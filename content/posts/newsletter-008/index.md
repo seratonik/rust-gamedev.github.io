@@ -21,7 +21,7 @@ Want something mentioned in the next newsletter?
 [Send us a pull request][pr].
 Feel free to send PRs about your own projects!
 
-[Rust]: https://rust-lang.org
+[rust]: https://rust-lang.org
 [join]: https://github.com/rust-gamedev/wg#join-the-fun
 [pr]: https://github.com/rust-gamedev/rust-gamedev.github.io
 
@@ -64,36 +64,64 @@ keep the other players from getting to theirs.
 [dynamaze-source]: https://github.com/boringcactus/dynamaze
 [@boringcactus]: https://github.com/boringcactus
 
+### For The Quest
+
+For The Quest is the working title for a game in early development by
+[@seratonik][]. Written entirely in Rust and compiled to WebAssembly,
+For The Quest is destined to become a MMORPG set in a post-apocalyptic
+Earth where your goal is to band together into like-minded factions to
+not only survive in this new world, but to unearth the cause of humanity's
+downfall.
+
+For The Quest is currently undergoing engine development with a focus on
+running smoothly in modern browsers using WebGL 2.0 before moving onto
+native desktop ports.
+
+New developments in March:
+
+- Collision and Activation-Based Triggerable Entities (Able to load new areas)
+- New overworld "sky light" directional lighting shaders in addition to
+  omni-directional point lighting for underground areas
+- New Ice Cavern models and textures, establishing a hybrid pixel-art in 3D
+  style - mapping tool has been expanded to allow for rotating "tiles" to
+  build extensive environments in a simple text format for rapid prototyping
+- Specular maps added to the engine and world for that extra shine
+- Started refactoring the rendering pipeline to allow for screen-space effects
+  such as reflections and ambient occlusion
+
 ## Library & Tooling Updates
 
 ### gfx-rs and wgpu news
 
-[gfx-hal-0.5](https://github.com/gfx-rs/gfx/) was released :tada: 
+[gfx-hal-0.5](https://github.com/gfx-rs/gfx/) was released :tada:
 Improvements done in March:
-  - Debug markers. Users are now able to debug-annotate parts of the rendered frame, so that inspecting it in a GPU debugger is more enjoyable.
-  - The generic range parameters are removed in favor of simple structs. This is a move towards simpler low-level API.
-  - Physical device features for NDC Y-flip and sampler mirror clamp are added
-  - Physical device performance hints are introduced. The first hint is for "base vertex/instance" support.
-  - `SmallVec` is removed from the API, it's reshaped to avoid any heap allocations. Previously, it had to touch the heap on multiple descriptor sets or command buffers.
-  - DX12 got true support for read-only storage bindings. This is one of the opt-in derivations from Vulkan that allow to better map users logic to non-Vulkan backends, also used by WebGPU.
-  - Last but not the least, @zicklag [has been fighting](https://github.com/gfx-rs/gfx/pull/3151) with the OpenGL backend to align its API with the rest of the crowd, armed with [surfman](https://github.com/pcwalton/surfman). The fight is reading conclusion, and we are crossing fingers to add OpenGL support to `wgpu-rs` as it lands.
+
+- Debug markers. Users are now able to debug-annotate parts of the rendered frame, so that inspecting it in a GPU debugger is more enjoyable.
+- The generic range parameters are removed in favor of simple structs. This is a move towards simpler low-level API.
+- Physical device features for NDC Y-flip and sampler mirror clamp are added
+- Physical device performance hints are introduced. The first hint is for "base vertex/instance" support.
+- `SmallVec` is removed from the API, it's reshaped to avoid any heap allocations. Previously, it had to touch the heap on multiple descriptor sets or command buffers.
+- DX12 got true support for read-only storage bindings. This is one of the opt-in derivations from Vulkan that allow to better map users logic to non-Vulkan backends, also used by WebGPU.
+- Last but not the least, @zicklag [has been fighting](https://github.com/gfx-rs/gfx/pull/3151) with the OpenGL backend to align its API with the rest of the crowd, armed with [surfman](https://github.com/pcwalton/surfman). The fight is reading conclusion, and we are crossing fingers to add OpenGL support to `wgpu-rs` as it lands.
 
 [wgpu](https://github.com/gfx-rs/wgpu) and [wgpu-rs](https://github.com/gfx-rs/wgpu-rs) changes in March:
-  - @grovesNL reached an epic milestone in the Web target by showing the [first triangle](https://github.com/gfx-rs/wgpu-rs/pull/193#issuecomment-599156540). Users will soon be able to seamlessly target the web with their existing `wgpu-rs` applications :rocket:
-  - `wgpu-types` crate is created to share types between the Web target and the native one.
-  - @lachlansneff improved the _async_ story quite a bit, we also converted more methods to be asynchronous.
-  - Debug labels support.
-  - Id management story for browsers with a GPU process has been completely redesigned and now working well.
-  - All the objects are properly destroyed and GPU tracked if needed.
-  - Ability to provide a `Surface` so that the selected adapter can present to it.
-  - New "mailbox" present mode.
+
+- @grovesNL reached an epic milestone in the Web target by showing the [first triangle](https://github.com/gfx-rs/wgpu-rs/pull/193#issuecomment-599156540). Users will soon be able to seamlessly target the web with their existing `wgpu-rs` applications :rocket:
+- `wgpu-types` crate is created to share types between the Web target and the native one.
+- @lachlansneff improved the _async_ story quite a bit, we also converted more methods to be asynchronous.
+- Debug labels support.
+- Id management story for browsers with a GPU process has been completely redesigned and now working well.
+- All the objects are properly destroyed and GPU tracked if needed.
+- Ability to provide a `Surface` so that the selected adapter can present to it.
+- New "mailbox" present mode.
 
 Satellite projects:
-  - [naga](https://github.com/gfx-rs/naga) - the new in-house shader translator has reached the milestone of successfully loading a WGSL [boids example](https://github.com/gfx-rs/naga/blob/thda1f6a47b06c89abb1dff70326c076f1088964a3/test-data/boids.wgsl) and generating a valid Metal source for it :tada:
-  - [metal-rs](https://github.com/gfx-rs/metal-rs/) has got a lot of contribution by @adamnemecek. Indirect command encoding is particularly exciting!
-  - [gfx-extras](https://github.com/gfx-rs/gfx-extras) is a new library that is forked from rendy-memory/descriptor.
-  - [gfx-ocean](https://github.com/gfx-rs/gfx-ocean) was moved to gfx-rs organization and updated to gfx-hal-0.5.
-  - [gfx-portability](https://github.com/gfx-rs/portability) was also updated.
+
+- [naga](https://github.com/gfx-rs/naga) - the new in-house shader translator has reached the milestone of successfully loading a WGSL [boids example](https://github.com/gfx-rs/naga/blob/thda1f6a47b06c89abb1dff70326c076f1088964a3/test-data/boids.wgsl) and generating a valid Metal source for it :tada:
+- [metal-rs](https://github.com/gfx-rs/metal-rs/) has got a lot of contribution by @adamnemecek. Indirect command encoding is particularly exciting!
+- [gfx-extras](https://github.com/gfx-rs/gfx-extras) is a new library that is forked from rendy-memory/descriptor.
+- [gfx-ocean](https://github.com/gfx-rs/gfx-ocean) was moved to gfx-rs organization and updated to gfx-hal-0.5.
+- [gfx-portability](https://github.com/gfx-rs/portability) was also updated.
 
 ### [Quest Engine Part 2: Deploying a Rust App On Android][quest-part-2]
 
@@ -136,19 +164,20 @@ _Discussions: [/r/rust](https://www.reddit.com/r/rust_gamedev/comments/foywc6/an
 ### [three-d] v0.1
 
 [three-d] is a renderer which targets both desktop (OpenGL) and web
-(WebAssembly + WebGL2) which makes it possible to develop a 3D application on 
+(WebAssembly + WebGL2) which makes it possible to develop a 3D application on
 desktop and easily deploy it on web.
 
-This month [three-d v0.1][three-d-v0-1] was released. 
+This month [three-d v0.1][three-d-v0-1] was released.
 Main features:
+
 - Thin and low-level graphics abstraction layer which maps one-to-one with the
-OpenGL/WebGL2 graphics APIs.
+  OpenGL/WebGL2 graphics APIs.
 - Medium-level modular abstractions of common graphics concepts.
 - Deferred renderer with high-level components.
 - Default windows for easy setup.
 
-It is possible to build your own rendering features from low- or medium-level 
-components and combine with other high-level features, so you can already now 
+It is possible to build your own rendering features from low- or medium-level
+components and combine with other high-level features, so you can already now
 make some cool stuff. See for example these [examples][three-d-examples].
 
 ![Lighting example](three-d-lighting.png)
@@ -161,12 +190,12 @@ make some cool stuff. See for example these [examples][three-d-examples].
 
 ### This Month in Mun
 
-[![Mun logo](mun-logo.png)][Mun]
+[![Mun logo](mun-logo.png)][mun]
 
 [Mun] is a scripting language for gamedev focused on quick iteration times
 that is written in Rust.
 
-The Mun Team [announced][mun-february] that they have obtained a $15k grant
+The Mun Team [announced][mun-february] that they have obtained a \$15k grant
 as part of the [MOSS Mission Partners][moss] track, to further develop hot
 reloadable data structures.
 
@@ -178,11 +207,10 @@ Their [March updates][mun-march] include:
 - performance benchmarks;
 - bugfixes and improved test coverage.
 
-[Mun]: https://mun-lang.org
+[mun]: https://mun-lang.org
 [moss]: https://www.mozilla.org/en-US/moss/mission-partners
 [mun-february]: (https://mun-lang.org/blog/2020/03/10/this-month-february
 [mun-march]: https://mun-lang.org/blog/2020/04/02/this-month-march
-
 
 ## Popular Workgroup Issues in Github
 
@@ -232,7 +260,7 @@ and highlight events from the past. -->
 
 Just an interesting Rust gamedev link from the past. :)
 
-------
+---
 
 That's all news for today, thanks for reading!
 
