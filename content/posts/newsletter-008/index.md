@@ -66,6 +66,8 @@ keep the other players from getting to theirs.
 
 ### For The Quest
 
+![For The Quest screenshot](forthequest.jpg)
+
 For The Quest is the working title for a game in early development by
 [@seratonik][]. Written entirely in Rust and compiled to WebAssembly,
 For The Quest is destined to become a MMORPG set in a post-apocalyptic
@@ -88,6 +90,8 @@ New developments in March:
 - Specular maps added to the engine and world for that extra shine
 - Started refactoring the rendering pipeline to allow for screen-space effects
   such as reflections and ambient occlusion
+
+Follow [@seratonik][] on Twitter for updates.
 
 [@seratonik]: https://twitter.com/seratonik
 
