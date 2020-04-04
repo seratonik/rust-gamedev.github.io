@@ -89,6 +89,8 @@ New developments in March:
 - Started refactoring the rendering pipeline to allow for screen-space effects
   such as reflections and ambient occlusion
 
+[@seratonik]: https://twitter.com/seratonik
+
 ## Library & Tooling Updates
 
 ### gfx-rs and wgpu news
