@@ -64,6 +64,38 @@ keep the other players from getting to theirs.
 [dynamaze-source]: https://github.com/boringcactus/dynamaze
 [@boringcactus]: https://github.com/boringcactus
 
+### [Slime99][slime99]
+
+![Slime99](slime99.png)
+
+[Slime99][slime99] by [@stevebob][] is an [open source][slime99-source]
+roguelike made for the [7 Day Roguelike 2020][7drl-2020] game jam.
+
+A traditional roguelike where the outcomes of attacking and defending are
+pre-determined and visible. Gameplay revolves around fighting slimes, adding to
+your sequence of combat outcomes, and using abilities to modify the order in
+which combat outcomes occur. It’s set in a neon sewer!
+
+[slime99]: https://gridbugs.itch.io/slime99
+[slime99-source]: https://github.com/stevebob/slime99
+[@stevebob]: https://github.com/stevebob
+[7drl-2020]: https://itch.io/jam/7drl-challenge-2020
+
+### [Will][will]
+
+![Will main menu](will_main.png)
+
+[Will][will] is a 2.5D moddable action / adventure game.
+
+Highlights of [this month's update][will_blogpost] include:
+
+- Going [open source][will_source]
+- Network play (early version)
+
+[will]: https://azriel.im/will
+[will_blogpost]: https://azriel.im/will/2020/03/13/join-me/
+[will_source]: https://github.com/azriel91/autexousious
+
 ### For The Quest
 
 ![For The Quest screenshot](forthequest.jpg)
@@ -99,39 +131,70 @@ Follow [@seratonik][] on Twitter for updates.
 
 ### gfx-rs and wgpu news
 
-[gfx-hal-0.5](https://github.com/gfx-rs/gfx/) was released :tada:
+[gfx-hal-0.5](https://github.com/gfx-rs/gfx/) was released!
 Improvements done in March:
 
-- Debug markers. Users are now able to debug-annotate parts of the rendered frame, so that inspecting it in a GPU debugger is more enjoyable.
-- The generic range parameters are removed in favor of simple structs. This is a move towards simpler low-level API.
-- Physical device features for NDC Y-flip and sampler mirror clamp are added
-- Physical device performance hints are introduced. The first hint is for "base vertex/instance" support.
-- `SmallVec` is removed from the API, it's reshaped to avoid any heap allocations. Previously, it had to touch the heap on multiple descriptor sets or command buffers.
-- DX12 got true support for read-only storage bindings. This is one of the opt-in derivations from Vulkan that allow to better map users logic to non-Vulkan backends, also used by WebGPU.
-- Last but not the least, @zicklag [has been fighting](https://github.com/gfx-rs/gfx/pull/3151) with the OpenGL backend to align its API with the rest of the crowd, armed with [surfman](https://github.com/pcwalton/surfman). The fight is reading conclusion, and we are crossing fingers to add OpenGL support to `wgpu-rs` as it lands.
+- Debug markers.
+  Users are now able to debug-annotate parts of the rendered frame,
+  so that inspecting it in a GPU debugger is more enjoyable.
+- The generic range parameters are removed in favor of simple structs.
+  This is a move towards simpler low-level API.
+- Physical device features for NDC Y-flip and sampler mirror clamp are added.
+- Physical device performance hints are introduced.
+  The first hint is for "base vertex/instance" support.
+- `SmallVec` is removed from the API, it's reshaped
+  to avoid any heap allocations.
+  Previously, it had to touch the heap on multiple descriptor sets
+  or command buffers.
+- DX12 got true support for read-only storage bindings.
+  This is one of the opt-in derivations from Vulkan that allow to better map
+  users logic to non-Vulkan backends, also used by WebGPU.
+- Last but not the least, @zicklag
+  [has been fighting](https://github.com/gfx-rs/gfx/pull/3151)
+  with the OpenGL backend to align its API with the rest of the crowd,
+  armed with [surfman](https://github.com/pcwalton/surfman).
+  The fight is reading conclusion, and we are crossing fingers
+  to add OpenGL support to `wgpu-rs` as it lands.
 
-[wgpu](https://github.com/gfx-rs/wgpu) and [wgpu-rs](https://github.com/gfx-rs/wgpu-rs) changes in March:
+[wgpu](https://github.com/gfx-rs/wgpu) and
+[wgpu-rs](https://github.com/gfx-rs/wgpu-rs) changes in March:
 
-- @grovesNL reached an epic milestone in the Web target by showing the [first triangle](https://github.com/gfx-rs/wgpu-rs/pull/193#issuecomment-599156540). Users will soon be able to seamlessly target the web with their existing `wgpu-rs` applications :rocket:
-- `wgpu-types` crate is created to share types between the Web target and the native one.
-- @lachlansneff improved the _async_ story quite a bit, we also converted more methods to be asynchronous.
+- @grovesNL reached an epic milestone in the Web target
+  by showing the [first triangle][wgpu-web-triangle].
+  Users will soon be able to seamlessly target the web
+  with their existing `wgpu-rs` applications. 🚀
+- `wgpu-types` crate is created to share types between the Web target
+  and the native one.
+- @lachlansneff improved the _async_ story quite a bit,
+  we also converted more methods to be asynchronous.
 - Debug labels support.
-- Id management story for browsers with a GPU process has been completely redesigned and now working well.
+- Id management story for browsers with a GPU process
+  has been completely redesigned and now working well.
 - All the objects are properly destroyed and GPU tracked if needed.
 - Ability to provide a `Surface` so that the selected adapter can present to it.
 - New "mailbox" present mode.
 
 Satellite projects:
 
-- [naga](https://github.com/gfx-rs/naga) - the new in-house shader translator has reached the milestone of successfully loading a WGSL [boids example](https://github.com/gfx-rs/naga/blob/thda1f6a47b06c89abb1dff70326c076f1088964a3/test-data/boids.wgsl) and generating a valid Metal source for it :tada:
-- [metal-rs](https://github.com/gfx-rs/metal-rs/) has got a lot of contribution by @adamnemecek. Indirect command encoding is particularly exciting!
-- [gfx-extras](https://github.com/gfx-rs/gfx-extras) is a new library that is forked from rendy-memory/descriptor.
-- [gfx-ocean](https://github.com/gfx-rs/gfx-ocean) was moved to gfx-rs organization and updated to gfx-hal-0.5.
+- [naga] - the new in-house shader translator has reached the milestone
+  of successfully loading a WGSL [boids example]
+  and generating a valid Metal source for it. 🎉
+- [metal-rs](https://github.com/gfx-rs/metal-rs)
+  has got a lot of contribution by @adamnemecek.
+  Indirect command encoding is particularly exciting!
+- [gfx-extras](https://github.com/gfx-rs/gfx-extras) is
+  a new library that is forked from rendy-memory/descriptor.
+- [gfx-ocean](https://github.com/gfx-rs/gfx-ocean) was moved
+  to gfx-rs organization and updated to gfx-hal-0.5.
 - [gfx-portability](https://github.com/gfx-rs/portability) was also updated.
+
+[wgpu-web-triangle]: https://github.com/gfx-rs/wgpu-rs/pull/193#issuecomment-599156540
+[naga]: https://github.com/gfx-rs/naga
+[boids example]: https://github.com/gfx-rs/naga/blob/thda1f6a4/test-data/boids.wgsl
 
 ### [Quest Engine Part 2: Deploying a Rust App On Android][quest-part-2]
 
-![Oculus Quest](./quest.jpg)
+![Oculus Quest](quest.jpg)
 
 The [second part][quest-part-2] of Nikita Krupitskas'
 [blog series][quest-part-1] on developing a game engine for the Oculus Quest
@@ -145,7 +208,7 @@ for Android - useful even if you're not targeting the Oculus hardware!
 
 ### [const-tweaker]
 
-![const-tweaker UI](./const-tweaker.gif)
+![const-tweaker UI](const-tweaker.gif)
 
 Thomas Versteeg has released a new crate called `const-tweaker`, which provides
 a web UI that can be used to tweak `const` variables in a running application.
@@ -215,8 +278,70 @@ Their [March updates][mun-march] include:
 
 [mun]: https://mun-lang.org
 [moss]: https://www.mozilla.org/en-US/moss/mission-partners
-[mun-february]: (https://mun-lang.org/blog/2020/03/10/this-month-february
+[mun-february]: https://mun-lang.org/blog/2020/03/10/this-month-february
 [mun-march]: https://mun-lang.org/blog/2020/04/02/this-month-march
+
+### [Amethyst][amethyst]
+
+[![Amethyst logo](amethyst-logo.png)][amethyst]
+
+- [Ametyst 0.15.0 was released][amethyst_release]:
+
+  - Better panic messages on `stable` Rust.
+  - Support for setting log levels from configuration.
+  - Text field rendering corrections.
+  - Target multiple overlapping UI entities with events.
+
+- [`specs`] is the underlying ECS that powers Amethyst but there's an
+  [ongoing prospect][amethyst_legion_rfc] of moving to [`legion`].
+  [@csherratt] wrote an [excellent post][amethyst_specs_legion] comparing both
+  libraries. Also an [in-depth discussion][amethyst_ecs_discussion] about
+  archetypal and grouped ECS design took place on the forum.
+
+  ![specs vs amethyst layout](specs-vs-legion.png)
+
+- [Atelier][amethyst_atelier] is an asset management and processing
+  framework for games.
+  Coupled with [`legion`], [@aclysma] and [@kabergstrom] built an
+  [editor prototype][amethyst_editor_prototype] demonstrating the following
+  capabilities:
+
+  - Prefab loading, saving, and hot-reloading
+  - Entity creation / deletion
+  - Component addition / removal
+  - Undo and Redo
+
+Check out the [demo video][amethyst_editor_youtube] and
+[forum discussion][amethyst_editor_forum].
+
+- There is an [ongoing effort to bring WASM support to Amethyst][amethyst_wasm_effort].
+  Check out the [contribution guide][amethyst_wasm_contribution_guide]
+  and [project board][amethyst_wasm_project_board] for current status.
+
+- [@ToferC] reviewed their experience using Amethyst to build a space combat game,
+  [Paladin][amethyst_review_paladin]. Check out the
+  [review on youtube][amethyst_review_youtube].
+
+[@aclysma]: https://github.com/aclysma
+[@csherratt]: https://github.com/csherratt
+[@kabergstrom]: https://github.com/kabergstrom
+[@toferc]: https://github.com/ToferC
+[`legion`]: https://github.com/TomGillen/legion
+[`specs`]: https://github.com/amethyst/specs
+[amethyst]: https://amethyst.rs
+[amethyst_atelier]: https://github.com/amethyst/atelier-assets
+[amethyst_ecs_discussion]: https://community.amethyst.rs/t/archetypal-vs-grouped-ecs-architectures-my-take/1344
+[amethyst_editor_forum]: https://community.amethyst.rs/t/atelier-legion-integration-demo/1352
+[amethyst_editor_prototype]: https://github.com/aclysma/atelier-legion-demo
+[amethyst_editor_youtube]: https://youtube.com/watch?v=9Vwi29RuQBE
+[amethyst_legion_rfc]: https://github.com/amethyst/rfcs/issues/22
+[amethyst_release]: https://amethyst.rs/posts/release-0-15-0
+[amethyst_review_paladin]: https://github.com/ToferC/paladin
+[amethyst_review_youtube]: https://youtube.com/watch?v=avW2Nr6ak-o
+[amethyst_specs_legion]: https://csherratt.github.io/blog/posts/specs-and-legion/
+[amethyst_wasm_contribution_guide]: https://github.com/amethyst/amethyst/tree/wasm/docs/CONTRIBUTING_WASM.md
+[amethyst_wasm_effort]: https://community.amethyst.rs/t/wasm-effort/1336
+[amethyst_wasm_project_board]: https://github.com/amethyst/amethyst/projects/20
 
 ## Popular Workgroup Issues in Github
 
@@ -245,7 +370,9 @@ or [join the next meeting][join].
 - [Amethyst's "good first issue" issues][amethyst-issues];
 - [A/B Street's "good first issue" issues][abstreet-issues];
 - [Mun's "good first issue" issues][mun-issues];
-- Anybody wants to work on the [GLSL front-end](https://github.com/gfx-rs/naga/issues/23) in Naga? One day, we'll be able to finally replace glsl-to-spirv, which is used by a lot of graphics applications and is prone to issues.
+- Anybody wants to work on the [GLSL front-end][naga-issue] in Naga?
+  One day, we'll be able to finally replace glsl-to-spirv,
+  which is used by a lot of graphics applications and is prone to issues.
 
 [embark.rs]: https://embark.rs
 [embark-open-issues]: https://github.com/search?q=user:EmbarkStudios+state:open
@@ -258,6 +385,7 @@ or [join the next meeting][join].
 [amethyst-issues]: https://github.com/amethyst/amethyst/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22
 [abstreet-issues]: https://github.com/dabreegster/abstreet/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22
 [mun-issues]: https://github.com/mun-lang/mun/labels/good%20first%20issue
+[naga-issue]: https://github.com/gfx-rs/naga/issues/23
 
 ## Bonus
 
